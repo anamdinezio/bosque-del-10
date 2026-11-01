@@ -494,5 +494,6 @@ const TXT = {
   finTitulo: '¡Nivel completado!',
   finTodo: '¡Terminaste todo el bosque!',
   fin: { 3: '¡Perfecto! Lo hiciste sin errores.', 2: '¡Muy bien! Casi sin errores.', 1: '¡Lo lograste! Cada error te ayuda a aprender.' },
-  pruebaVoz: 'Hola, Emily. Soy Ocre. Así suena mi voz.'
+  pruebaVoz: 'Hola, Emily. Soy Ocre. Así suena mi voz.',
+  sinPantallaCompleta: 'Para jugar en pantalla completa, toca Compartir y luego Agregar a pantalla de inicio. Después abre el juego desde ese ícono.'
 };

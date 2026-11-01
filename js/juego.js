@@ -776,6 +776,30 @@ $('#aj-listo').onclick = () => { $('#panel-ajustes').hidden = true; };
 $('#aj-salir').onclick = () => irAlMapa(J.cap);
 for (const b of document.querySelectorAll('[data-cerrar]')) b.onclick = () => { $('#' + b.dataset.cerrar).hidden = true; Voz.callar(); };
 
+// Pantalla completa (en iPad Safari se usa la versión con prefijo webkit)
+function enPantallaCompleta() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+function alternarPantallaCompleta() {
+  const d = document, el = d.documentElement;
+  if (enPantallaCompleta()) { (d.exitFullscreen || d.webkitExitFullscreen).call(d); return; }
+  const pedir = el.requestFullscreen || el.webkitRequestFullscreen;
+  if (!pedir) { globo(TXT.sinPantallaCompleta, 9000); return; }
+  try {
+    const r = pedir.call(el);
+    if (r && r.catch) r.catch(() => globo(TXT.sinPantallaCompleta, 9000));
+  } catch (e) { globo(TXT.sinPantallaCompleta, 9000); }
+}
+function marcarPantallaCompleta() {
+  document.body.classList.toggle('pantalla-completa', enPantallaCompleta());
+  setTimeout(ajustarTamano, 200);
+}
+document.addEventListener('fullscreenchange', marcarPantallaCompleta);
+document.addEventListener('webkitfullscreenchange', marcarPantallaCompleta);
+for (const b of document.querySelectorAll('.btn-pantalla')) b.onclick = alternarPantallaCompleta;
+// Abierto desde el ícono de la pantalla de inicio ya ocupa toda la pantalla
+if (window.matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches || navigator.standalone) {
+  for (const b of document.querySelectorAll('.btn-pantalla')) b.hidden = true;
+}
+
 $('#btn-ajustes').onclick = abrirAjustes;
 $('#btn-poderes').onclick = abrirPoderes;
 $('#btn-pista').onclick = pedirPista;

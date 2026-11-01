@@ -4,10 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Emily y el Bosque del 10</title>
+<meta name="description" content="Juego para aprender matemática jugando: sumas, restas, multiplicación y división en un bosque.">
+<meta name="theme-color" content="#141D0F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bosque del 10">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="iconos/icono-180.png">
+<link rel="icon" type="image/png" href="iconos/icono-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilos.css?v=14">
+<link rel="stylesheet" href="estilos.css?v=15">
 </head>
 <body>
 <div id="escenario">
@@ -25,6 +34,7 @@
     <div id="titulo-nivel"></div>
     <button id="btn-poderes" class="btn-redondo" aria-label="Mis poderes">10</button>
     <button id="btn-pista" class="btn-redondo" aria-label="Pedir una pista a Ocre"></button>
+    <button id="btn-pantalla" class="btn-redondo btn-pantalla" aria-label="Pantalla completa"><svg viewBox="0 0 40 40" aria-hidden="true"><path class="ico-ampliar" d="M8 16 V8 H16 M24 8 H32 V16 M32 24 V32 H24 M16 32 H8 V24" fill="none" stroke="#3A2416" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path class="ico-reducir" d="M16 8 V16 H8 M32 16 H24 V8 M24 32 V24 H32 M8 24 H16 V32" fill="none" stroke="#3A2416" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
 
   <div id="controles-tactiles" hidden>
@@ -44,6 +54,7 @@
         <div id="ocre-inicio"></div>
       </div>
       <button id="btn-jugar" class="btn-grande">Jugar</button>
+      <button class="btn-chico btn-pantalla btn-pantalla-texto"><svg viewBox="0 0 40 40" aria-hidden="true"><path class="ico-ampliar" d="M8 16 V8 H16 M24 8 H32 V16 M32 24 V32 H24 M16 32 H8 V24" fill="none" stroke="#3A2416" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path class="ico-reducir" d="M16 8 V16 H8 M32 16 H24 V8 M24 32 V24 H32 M8 24 H16 V32" fill="none" stroke="#3A2416" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Pantalla completa</span></button>
     </div>
   </div>
 
@@ -54,6 +65,7 @@
         <button id="mapa-inicio" class="btn-chico">Inicio</button>
         <h2>El bosque</h2>
         <div class="mapa-botones">
+          <button class="btn-chico btn-pantalla btn-pantalla-texto" aria-label="Pantalla completa"><svg viewBox="0 0 40 40" aria-hidden="true"><path class="ico-ampliar" d="M8 16 V8 H16 M24 8 H32 V16 M32 24 V32 H24 M16 32 H8 V24" fill="none" stroke="#3A2416" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path class="ico-reducir" d="M16 8 V16 H8 M32 16 H24 V8 M24 32 V24 H32 M8 24 H16 V32" fill="none" stroke="#3A2416" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <button id="mapa-poderes" class="btn-chico">Mis poderes</button>
           <button id="mapa-ajustes" class="btn-chico">Ajustes</button>
         </div>
@@ -179,10 +191,10 @@
   <div id="hoja-cayendo" hidden></div>
 </div>
 
-<script src="audio/ocre/lista.js?v=14"></script>
-<script src="js/utiles.js?v=14"></script>
-<script src="js/dibujos.js?v=14"></script>
-<script src="js/niveles.js?v=14"></script>
-<script src="js/juego.js?v=14"></script>
+<script src="audio/ocre/lista.js?v=15"></script>
+<script src="js/utiles.js?v=15"></script>
+<script src="js/dibujos.js?v=15"></script>
+<script src="js/niveles.js?v=15"></script>
+<script src="js/juego.js?v=15"></script>
 </body>
 </html>

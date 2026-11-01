@@ -287,3 +287,11 @@ button:focus-visible, input:focus-visible { outline: 0.35cqw solid var(--oro); o
 @media (prefers-reduced-motion: reduce) {
   .dialogo-hoja, #ocre-inicio, #btn-volver.llamando { animation: none; }
 }
+
+/* pantalla completa */
+#btn-pantalla { top: 16.6cqw; right: 3.9cqw; width: 4.8cqw; height: 4.8cqw; padding: 0.9cqw; }
+.btn-pantalla-texto { display: inline-flex; align-items: center; gap: 0.6cqw; }
+.btn-pantalla-texto svg { width: 2cqw; height: 2cqw; }
+.btn-pantalla .ico-reducir { display: none; }
+.pantalla-completa .btn-pantalla .ico-reducir { display: inline; }
+.pantalla-completa .btn-pantalla .ico-ampliar { display: none; }

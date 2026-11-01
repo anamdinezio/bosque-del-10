@@ -1,0 +1,24 @@
+{
+  "name": "Emily y el Bosque del 10",
+  "short_name": "Bosque del 10",
+  "description": "Juego para aprender matemática jugando.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#141D0F",
+  "theme_color": "#141D0F",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "iconos/icono-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "iconos/icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
