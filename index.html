@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Emily y el Bosque del 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css?v=14">
+</head>
+<body>
+<div id="escenario">
+  <canvas id="lienzo" width="960" height="540" aria-label="El bosque"></canvas>
+
+  <div id="cuenta-activa" hidden></div>
+
+  <div id="hud" hidden>
+    <button id="btn-volver" class="btn-redondo" aria-label="Volver atrás">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 10 L8 20 L20 30 Z M32 10 L20 20 L32 30 Z" fill="#C0392B"/></svg>
+    </button>
+    <button id="btn-ajustes" class="btn-redondo" aria-label="Ajustes">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="7" fill="none" stroke="#6E5A45" stroke-width="5"/><path d="M20 6 V11 M20 29 V34 M6 20 H11 M29 20 H34 M10 10 L13.5 13.5 M26.5 26.5 L30 30 M30 10 L26.5 13.5 M13.5 26.5 L10 30" stroke="#6E5A45" stroke-width="5" stroke-linecap="round"/></svg>
+    </button>
+    <div id="titulo-nivel"></div>
+    <button id="btn-poderes" class="btn-redondo" aria-label="Mis poderes">10</button>
+    <button id="btn-pista" class="btn-redondo" aria-label="Pedir una pista a Ocre"></button>
+  </div>
+
+  <div id="controles-tactiles" hidden>
+    <div class="grupo-izq">
+      <button data-tecla="izq" aria-label="Caminar a la izquierda">←</button>
+      <button data-tecla="der" aria-label="Caminar a la derecha">→</button>
+    </div>
+    <button data-tecla="arriba" aria-label="Saltar">↑</button>
+  </div>
+
+  <!-- Pantalla de inicio -->
+  <div id="pantalla-inicio" class="pantalla">
+    <div class="inicio-caja">
+      <h1>Emily y el<br>Bosque del 10</h1>
+      <div class="inicio-personajes">
+        <div id="conejo-inicio"></div>
+        <div id="ocre-inicio"></div>
+      </div>
+      <button id="btn-jugar" class="btn-grande">Jugar</button>
+    </div>
+  </div>
+
+  <!-- Mapa del bosque -->
+  <div id="pantalla-mapa" class="pantalla" hidden>
+    <div class="mapa-caja">
+      <div class="mapa-cabecera">
+        <button id="mapa-inicio" class="btn-chico">Inicio</button>
+        <h2>El bosque</h2>
+        <div class="mapa-botones">
+          <button id="mapa-poderes" class="btn-chico">Mis poderes</button>
+          <button id="mapa-ajustes" class="btn-chico">Ajustes</button>
+        </div>
+      </div>
+      <div id="mapa-capitulos"></div>
+      <div id="mapa-niveles"></div>
+    </div>
+  </div>
+
+  <!-- Pregunta de un animal -->
+  <div id="panel-pregunta" class="capa" hidden>
+    <div class="cartel cartel-pregunta">
+      <div class="cartel-titulo" id="preg-titulo"></div>
+      <div class="pergamino">
+        <button id="preg-voz" class="btn-voz" aria-label="Escuchar la pregunta">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9 H8 L13 5 V19 L8 15 H4 Z" fill="currentColor"/><path d="M16 8.5 Q19 12 16 15.5 M18.5 6 Q23 12 18.5 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <p id="preg-texto" class="texto-grande"></p>
+        <p id="preg-sub" class="texto-sub"></p>
+        <div id="preg-visual" class="visual"></div>
+        <div id="preg-pista" class="caja-pista" hidden></div>
+        <div id="preg-respuestas" class="respuestas"></div>
+        <p id="preg-feedback" class="feedback" aria-live="polite"></p>
+        <button id="preg-seguir" class="btn-accion" hidden>Seguir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portal -->
+  <div id="panel-portal" class="capa capa-portal" hidden>
+    <div class="cartel cartel-portal">
+      <div class="cartel-titulo" id="portal-titulo"></div>
+      <div class="pergamino">
+        <button id="portal-voz" class="btn-voz" aria-label="Escuchar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9 H8 L13 5 V19 L8 15 H4 Z" fill="currentColor"/><path d="M16 8.5 Q19 12 16 15.5 M18.5 6 Q23 12 18.5 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="portal-fila">
+          <div id="portal-tarjeta"></div>
+          <div class="portal-textos">
+            <p id="portal-texto" class="texto-grande"></p>
+            <p id="portal-sub" class="texto-sub"></p>
+          </div>
+        </div>
+        <div id="portal-pista" class="caja-pista" hidden></div>
+        <div id="portal-opciones" class="respuestas"></div>
+        <p id="portal-feedback" class="feedback" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mis poderes -->
+  <div id="panel-poderes" class="capa capa-alta" hidden>
+    <div class="cartel cartel-poderes">
+      <div class="cartel-titulo">Mis poderes</div>
+      <button class="cerrar" data-cerrar="panel-poderes" aria-label="Cerrar">×</button>
+      <div class="pergamino">
+        <div id="poderes-grilla"></div>
+        <p id="poderes-info" class="texto-sub"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ajustes -->
+  <div id="panel-ajustes" class="capa capa-alta" hidden>
+    <div class="cartel cartel-ajustes">
+      <div class="cartel-titulo">Ajustes</div>
+      <button class="cerrar" data-cerrar="panel-ajustes" aria-label="Cerrar">×</button>
+      <div class="pergamino">
+        <label class="ajuste" for="aj-voz"><span>Voz de Ocre</span><input id="aj-voz" type="range" min="0" max="1" step="0.05"></label>
+        <label class="ajuste" for="aj-maquina"><span>Voz de la computadora</span><input id="aj-maquina" type="checkbox"></label>
+        <label class="ajuste" for="aj-cual-voz"><span>Qué voz</span><select id="aj-cual-voz"></select></label>
+        <label class="ajuste" for="aj-sonido"><span>Sonidos</span><input id="aj-sonido" type="range" min="0" max="1" step="0.05"></label>
+        <label class="ajuste" for="aj-musica"><span>Sonido del bosque</span><input id="aj-musica" type="range" min="0" max="1" step="0.05"></label>
+        <p id="aj-nota-edge" class="texto-sub" hidden>Para que Ocre tenga una voz más natural, abre el juego en Microsoft Edge.</p>
+        <div class="fila-botones">
+          <button id="aj-listo" class="btn-accion">Listo</button>
+          <button id="aj-salir" class="btn-accion secundario">Salir al mapa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fin de nivel -->
+  <div id="panel-fin" class="capa" hidden>
+    <div class="cartel cartel-fin">
+      <div class="cartel-titulo" id="fin-titulo"></div>
+      <div class="pergamino">
+        <div id="fin-estrellas"></div>
+        <p id="fin-texto" class="texto-grande"></p>
+        <div class="fila-botones">
+          <button id="fin-siguiente" class="btn-accion">Siguiente nivel</button>
+          <button id="fin-repetir" class="btn-accion secundario">Repetir</button>
+          <button id="fin-mapa" class="btn-accion secundario">Mapa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ocre habla -->
+  <div id="dialogo" hidden>
+    <div id="dialogo-hoja" class="dialogo-hoja"></div>
+    <div class="dialogo-cuerpo">
+      <p id="dialogo-texto"></p>
+      <div id="dialogo-visual" class="visual" hidden></div>
+    </div>
+    <div class="dialogo-botones">
+      <button id="dialogo-voz" class="btn-voz" aria-label="Escuchar otra vez">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9 H8 L13 5 V19 L8 15 H4 Z" fill="currentColor"/><path d="M16 8.5 Q19 12 16 15.5 M18.5 6 Q23 12 18.5 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button id="dialogo-seguir" class="btn-accion">Seguir</button>
+    </div>
+  </div>
+
+  <div id="globo-ocre" hidden>
+    <div id="globo-hoja" class="dialogo-hoja"></div>
+    <p id="globo-texto"></p>
+  </div>
+
+  <div id="aviso-caida" hidden>
+    <p id="aviso-caida-texto"></p>
+  </div>
+
+  <div id="hoja-cayendo" hidden></div>
+</div>
+
+<script src="audio/ocre/lista.js?v=14"></script>
+<script src="js/utiles.js?v=14"></script>
+<script src="js/dibujos.js?v=14"></script>
+<script src="js/niveles.js?v=14"></script>
+<script src="js/juego.js?v=14"></script>
+</body>
+</html>
